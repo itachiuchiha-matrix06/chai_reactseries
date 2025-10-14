@@ -1,7 +1,7 @@
 import react, { useState, useEffect } from 'react'
 import './App.css'
 import {useDispatch} from 'react-redux'
-import authobject from './appwrite/auth'
+import authService from './appwrite/auth'
 import {login, logout} from "./store/authSlice"
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    authobject.getCurrentUser().
+    authService.getCurrentUser().
     then((userData) => {
       if (userData){
         dispatch(login({userData}))
@@ -27,7 +27,7 @@ function App() {
       <div className='w-full-block'>
         <Header />
         <main>
-          
+           
         </main>
         <Footer />
       </div>
