@@ -1,20 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import { Container, PostForm } from '../components'
-import appwriteService from '../appwrite/config'
+import React, {useEffect, useState} from 'react'
+import appwriteService from "../appwrite/config";
+import {Container, PostCard} from '../components'
 
-function Homes() {
+function Home() {
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
-        appwriteService.getPost().then((posts) => {
-                if (posts) {
-                    setPosts(posts)
-                }
-            })
+        appwriteService.getPosts().then((posts) => {
+            if (posts) {
+                setPosts(posts.documents)
+            }
+        })
     }, [])
-
-
-
+  
     if (posts.length === 0) {
         return (
             <div className="w-full py-8 mt-4 text-center">
@@ -30,10 +28,7 @@ function Homes() {
             </div>
         )
     }
-
-
-
-  return (
+    return (
         <div className='w-full py-8'>
             <Container>
                 <div className='flex flex-wrap'>
@@ -48,4 +43,4 @@ function Homes() {
     )
 }
 
-export default Homes
+export default Home
